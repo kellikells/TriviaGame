@@ -18,12 +18,21 @@
     <!-- jquery script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-
 </head>
 
 <body>
 
+    1-START GAME PAGE ()
+    2-ASKING QUESTIONS PAGE
+    3a-CORRECT
+    3b-INCORRECT
+    3c-NO SELECTION
+    4- SUMMARY OF SCORE
+
     <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- THIS ROW DOESN'T CHANGE, IT IS SAME THROUGHOUT THE GAME -->
+        <!-- ============================================================== -->
         <div class="row">
             <div class="col" id="title">
                 <h1>Pokemon Go!</h1>
@@ -31,43 +40,80 @@
             </div>
         </div>
 
+        <!-- ============================================================== -->
+        <!-------------------- TIMER--------------------
+               2(30 sec)    3a,3b,3c (5 sec)     4(30sec) -->
+        <!-- ============================================================== -->
         <div class="row" id="timer">
 
-            <!-- insert appropriate timer here  -->
-
             <div class="col" id="thirtySecTimer fiveSecTimer">
+                <!-- insert appropriate timer here by using 2 id options  -->
                 <!-- insert code here -->
 
             </div>
         </div>
 
-        <!-- ================================================= -->
-        <!-- the "ID" shows the different functions it holds -->
-        <div class="row" id="stillShowQuestion orReactionToAnswerInput">
+        <!-- ============================================================== -->
+        <!---------------------- <H2>-------------------------- 
+            (2: "Question") 
+            (3a: "Correct")(3b:"Incorrect")(3c:"Too Slow")
+            (4: "Your Trainer Summary") -->
+        <!-- ============================================================== -->
+        <div class="row" id="justSaysQuestion correct incorrect outOfTime scoreSummary">
+            <div class="col" id="question correct incorrect outOfTime counters">
 
-            <!-- this row displays the question for the round
-            the question is stored in some variable so it can be 
-            called per round -->
-            <div class="col" id="question correct incorrect outOfTime">
-                
-            </div>
-
-            <div class="row" id="sameAsRowAbove">
-            <!-- ================================================= -->
-            <!-- the "ID" shows the different functions it holds -->
-            <div class="col" id="answers plus-one-pokeball you-need-practice the-pokemon-ran-away">
-                <!-- insert question here by using $("#question").text(((()))) -->
-
-
-            </div>
-
-            <!-- ======================================= -->
-            <div class="row">
-                <div class="col" id="answerImgHidden answerImgShown">
-
-                </div>
             </div>
         </div>
+
+        <!-- ============================================================== -->
+        <!-- ----------------------<p>-------------------
+                2: variable for inserting appropriate Question 
+                3: text associated with previous rows response
+                4: (here is where the counters are finally displayed) -->
+        <!-- ============================================================== -->
+        <div class="row">
+
+            <!-- the "ID" shows the different functions it holds -->
+            <div class="col" id="question-for-the-round plus-one-pokeball you-need-practice the-pokemon-ran-away">
+                <!--2- insert question here by using $("#question").text(((()))) -->
+                <!-- 3- if else statement, chooses to display text (jQuery) -->
+                <!-- 4- if else statement, finally displays counter variable (jquery) -->
+
+            </div>
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- --------------------BUTTONS -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col" id="bttn">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col" id="bttn">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col" id="bttn">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col" id="bttn">
+
+            </div>
+        </div>
+            <!-- ============================================================== -->
+        <!-- --------------------IMAGES -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col" id="answerImgHidden answerImgShown">
+
+            </div>
+        </div>
+    </div>
 
 
 

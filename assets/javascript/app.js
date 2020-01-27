@@ -27,11 +27,31 @@ let correctVal2A1 = [
 
 
 
-let wrongVal3A2 =
-    let wrongVal4A3 =
-        let wrongVal5A4 =
-        // ========--counters (correct) (incorrect) (outoftime) ------------
-        let correct = 0;
+let wrongVal3A2 = [
+    "blue",
+    "2",
+    "Rainer",
+    "1 million",
+    "Spark",
+    "2015",
+    "pinap berry",
+    "35"
+];
+
+let wrongVal4A3 = [
+    "yellow",
+    "5",
+    "Spicy",
+    "2 million",
+    "Pikachu",
+    "2017",
+
+]
+
+let wrongVal5A4 = [];
+
+// ========--counters (correct) (incorrect) (outoftime) ------------
+let correct = 0;
 let wrong = 0;
 let tookTooLong = 0;
 
@@ -39,7 +59,9 @@ let tookTooLong = 0;
 //======================= FUNCTIONS===============
 // ======================================================
 
+// function to start and restart game
 
+startGame()
 
 //======----timers--(30S) (5S)--------
 
