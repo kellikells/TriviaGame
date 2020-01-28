@@ -6,6 +6,15 @@
 //==================  GLOBAL Variables ==========================
 // ======================================================
 
+// user response counters
+var correct = 0;
+var incorrect = 0;
+var unanswered = 0;
+
+//max number is 8, use this for LOGIC when <button>s are clicked
+var currentNumOfQs = correct + incorrect + unanswered;  
+
+
 // Each object has the values specific to the question being asked
 var arrayOfObjectsThatContainPropertiesThatChange = [];
 
@@ -21,8 +30,8 @@ var makeAnswerChoicesArray = function () {
 }
 
 
-
 // declaring the Object Constructor function, assemblePageInfoAndFacts
+// Could have made each Object, hopefully this approach will be useful in future applications
 function assemblePageInfoAndFacts(question, answer, wrongAnswerOne, wrongAnswerTwo,
     wrongAnswerThree) {
     this.question = question;
@@ -34,32 +43,28 @@ function assemblePageInfoAndFacts(question, answer, wrongAnswerOne, wrongAnswerT
 
 var pageOne = new assemblePageInfoAndFacts("What color is associated with Team Valor?",
     "Red", "Blue", "Yellow", "Green");
+
 console.log(pageOne.question);
 
 
+// =============================================================
+                // TIMERS
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-// conditional statements will compare the values 
-// ======================================================
-//======================= FUNCTIONS===============
-// ======================================================
+// ALL BUTTONS initiate this timeOut
+//  after 30 seconds it moves to next page 
+//  and increases unanswered count
+var thirtySec = setTimeout(unansweredThirtySec, 1000 * 30);
 
-// function to start and restart game
+function unansweredThirtySec() {
+   
+    // start page      or      summary page
+    if ((currentNumOfQs === 0) || (currentNumOfQs === 8)) {
+        clearTimeout(thirtySec);
+    }
+}
 
-// startGame()
+// ++++++++++++++++++++++++++++++++++++++++++++++++
+// window.onload = function () {
 
-//======----timers--(Three0S) (5S)--------
-
-// ======================================================
-// =======================LOOPS?============
-// ======================================================
-
-
-// ======================================================
-// =====================LOGIC (conditionals)=================
-// ======================================================
-
-
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// store function to start the game in variable, or 
-// event listener
