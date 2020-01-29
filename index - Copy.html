@@ -21,7 +21,15 @@
 
 <body>
 
+    <!-- 1-START GAME PAGE ()
+    2-ASKING QUESTIONS PAGE
+    3a-CORRECT
+    3b-INCORRECT
+    3c-NO SELECTION
+    4- SUMMARY OF SCORE -->
+
     <div class="container-fluid" id="theContent">
+
         <!-- ============================================================== -->
         <!-- THIS ROW DOESN'T CHANGE, IT IS SAME THROUGHOUT THE GAME -->
         <!-- ============================================================== -->
@@ -32,32 +40,52 @@
             </div>
         </div>
 
-        <!-- ============================================================== -->
-        <!-- ------------------ TIMER <h4>----------------->>
+        <!--  b============================================================== -->
+        <!-------------------- TIMER--------------------
+               2 (30 sec)    3a,3b,3c (5 sec)     4(30sec) -->
         <!-- ============================================================== -->
         <div class="row">
+
             <div class="col" id="intervalTimer">
+                <!-- insert appropriate timer here by using 2 id options  -->
+                <!-- insert code here -->
 
             </div>
         </div>
 
         <!-- ============================================================== -->
-        <!---------------------- <2>-------------------------- 
+        <!---------------------- <H2>-------------------------- 
             (2: "Question") 
             (3a: "Correct")(3b:"Incorrect")(3c:"out of time;Too Slow")
             (4: "Your Trainer Summary") -->
         <!-- ============================================================== -->
         <div class="row">
-            <div class="col section-titles">
+            <div class="col" id="question">
 
             </div>
         </div>
 
+        <!-- ============================================================== -->
+        <!-- ----------------------<p>-------------------
+                2: variable for inserting appropriate Question 
+                3: text associated with previous rows response
+                4: (here is where the counters are finally displayed) -->
+        <!-- ============================================================== -->
+        <div class="row">
+
+            <!-- the "ID" shows the different functions it holds -->
+            <div class="col" id="question-for-the-round plus-one-pokeball you-need-practice the-pokemon-ran-away">
+                <!--2- insert question here by using $("#question").text(((()))) -->
+                <!-- 3- if else statement, chooses to display text (jQuery) -->
+                <!-- 4- if else statement, finally displays counter variable (jquery) -->
+
+            </div>
+        </div>
 
         <!-- ============================================================== -->
         <!-- --------------------BUTTONS images  -->
         <!-- ============================================================== -->
-      
+        <div class="buttonWrap">
             <div class="row">
                 <div class="col">
                     <button type="button" class="bttn" id="bttn1"> </button>
@@ -81,7 +109,7 @@
                     <button type="button" class="bttn" id="bttn4"> </button>
                 </div>
             </div>
-      
+        </div>
         <!-- ============================================================== -->
         <!-- --------------------IMAGES -->
         <!-- ============================================================== -->

@@ -1,37 +1,61 @@
-var qArr = [{
-    "question": "What color is associated with Team Valor?",
-    "choices": ["red", "blue", "green", "blue"],
-    "answer": "red"
+
+
+
+var triviaArrObj = [
+    {
+    question: "What color is associated with Team Valor?",
+    choices: ["red", "blue", "green", "blue"],
+    answer: "red"
 },
 {
-    "question": "some question?",
-    "choices": ["yellow", "work", "green", "blue"],
-    "answer": "work"
+    question: "Pokemon Go generated $__ million in revenue its first month",
+    choices: ["200", "50", "150", "100"],
+    answer: "200"
+},
+{
+    question: "What name guarantees Eevee becoming Flareon?",
+    choices:  ["Pyro", "Rainer", "Spicy", "Sparky"],
+    answer: "Pyro"
+},
+{
+    question: "Who is the Yellow team's mascot?",
+    choices: ["Zapdos", "Spark", "Pikachu", "Instinct"],
+    answer: "Zapdos"
 }];
+
 
 var correct = 0;
 var incorrect = 0;
 var unanswered = 0;
-//---- max number is 6, use this for LOGIC when <button>s are clicked
+
 var currentNumOfQs = correct + incorrect + unanswered;
 
 var currentQuestion = 0;
 
 function displayQuestions() {
-    $("#question").append(qArr[currentQuestion]);
-    $("#bttn1").attr("value", qArr[currentQuestion].choices[0]);
-    $("#bttn2").attr("value", qArr[currentQuestion].choices[1]);
-    $("#bttn3").attr("value", qArr[currentQuestion].choices[2]);
-    $("#bttn4").attr("value", qArr[currentQuestion].choices[3]);
-    $("#bttn1").attr("rightAnswer", qArr[currentQuestion].answer);
-    $("#bttn2").attr("rightAnswer", qArr[currentQuestion].answer);
-    $("#bttn3").attr("rightAnswer", qArr[currentQuestion].answer);
-    $("#bttn4").attr("rightAnswer", qArr[currentQuestion].answer);
-    $("#bttn1").html(qArr[currentQuestion].choices[0]);
-    $("#bttn2").html(qArr[currentQuestion].choices[1]);
-    $("#bttn3").html(qArr[currentQuestion].choices[2]);
-    $("#bttn4").html(qArr[currentQuestion].choices[3]);
-    if (currentQuestion < qArr.length - 1) {
+    var sectionTitle = $("<h2>").text(triviaArrObj[currentQuestion].question);
+    var sectionTitleDisplayed = $(".section-titles").append(sectionTitle);
+
+    var currentObject = triviaArrObj[currentQuestion];
+    
+    for (let i = 0; i < array.length; i++) {
+        
+        const  = array[i];
+        
+    }
+    $("#bttn1").attr("value", triviaArrObj[currentQuestion].choices[0]);
+    $("#bttn2").attr("value", triviaArrObj[currentQuestion].choices[1]);
+    $("#bttn3").attr("value", triviaArrObj[currentQuestion].choices[2]);
+    $("#bttn4").attr("value", triviaArrObj[currentQuestion].choices[3]);
+    $("#bttn1").attr("rightAnswer", triviaArrObj[currentQuestion].answer);
+    $("#bttn2").attr("rightAnswer", triviaArrObj[currentQuestion].answer);
+    $("#bttn3").attr("rightAnswer", triviaArrObj[currentQuestion].answer);
+    $("#bttn4").attr("rightAnswer", triviaArrObj[currentQuestion].answer);
+    $("#bttn1").html(triviaArrObj[currentQuestion].choices[0]);
+    $("#bttn2").html(triviaArrObj[currentQuestion].choices[1]);
+    $("#bttn3").html(triviaArrObj[currentQuestion].choices[2]);
+    $("#bttn4").html(triviaArrObj[currentQuestion].choices[3]);
+    if (currentQuestion < triviaArrObj.length - 1) {
         currentQuestion++;
     }
     else {
@@ -42,15 +66,16 @@ function displayQuestions() {
 // user clicks an answer > correct or incorrect
 $(".bttn").on("click", function (event) {
     event.preventDefault();
-    var userChoice=$(this).attr("value");
-    var rightAnswer=$(this).attr("rightAnswer");
-if (userChoice === rightAnswer) {
-    correct++;
-}
-else {
-    incorrect++;
-}
-displayQuestions();
+    var userChoice = $(this).attr("value");
+    var rightAnswer = $(this).attr("rightAnswer");
+    if (userChoice === rightAnswer) {
+        correct++;
+    }
+    else {
+        incorrect++;
+    }
+    
+    displayQuestions();
 })
 
 $(".bttn").hide();
@@ -85,19 +110,16 @@ function decrement() {
         unanswered++;
     }
 }
-
-
 // ----------------------------------------------
 // start/play button functions
 // ----------------------------------------------
-$("#start").on("click", function (event) {
+$("#start").on("click", function(event) {
     // startTimer();
     event.preventDefault();
     console.log("message something");
     $("#start").hide();
     $(".bttn").show();
     displayQuestions();
-
 })
 
 // ----------------------------------------------

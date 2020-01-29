@@ -16,7 +16,8 @@ body {
     background: #f9fcff;
     border: 20px solid #e24b45;
     min-height: calc(100vh - 40px); 
-    display: flex;
+    /* display: flex; */
+    display: flexbox;
 }
 
 h1 {
@@ -39,8 +40,8 @@ p.reaction {
     font-family: 'Gloria Hallelujah', cursive;
 }
 
-.buttonWrap {
-    display: flex;
+/* .buttonWrap {
+    display: flex; */
     /* flex-wrap:  */
 }
 
