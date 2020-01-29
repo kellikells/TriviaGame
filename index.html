@@ -21,7 +21,7 @@
     <!-- <script type="text/javascript" src="assets/javascript/app.js"></script> -->
 
     <!-- jquery script -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 
 </head>
 
@@ -65,8 +65,8 @@
             (3a: "Correct")(3b:"Incorrect")(3c:"out of time;Too Slow")
             (4: "Your Trainer Summary") -->
         <!-- ============================================================== -->
-        <div class="row" id="justSaysQuestion correct incorrect unanswered scoreSummary">
-            <div class="col" id="question correct incorrect unanswered counters">
+        <div class="row">
+            <div class="col" id="question">
 
             </div>
         </div>
@@ -91,27 +91,29 @@
         <!-- ============================================================== -->
         <!-- --------------------BUTTONS images  -->
         <!-- ============================================================== -->
-        <div class="row">
-            <div class="col">
-                <button type="button" class="button bttn1"> </button>
+        <div class="buttonWrap">
+            <div class="row">
+                <div class="col">
+                    <button type="button" class="bttn" id="bttn1"> </button>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col"> 
-                <button type="button" class="button bttn2 start"> Click to Start! </button>
 
+            <div class="row">
+                <div class="col">
+                    <button type="button" id="start"> Click to Start! </button>
+                    <button type="button" class="bttn" id="bttn2"></button>
+
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <button type="button" class="button bttn3"> </button>
-
+            <div class="row">
+                <div class="col">
+                    <button type="button" class="bttn" id="bttn3"> </button>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <button type="button" class="button bttn4"> </button>
-
+            <div class="row">
+                <div class="col">
+                    <button type="button" class="bttn" id="bttn4"> </button>
+                </div>
             </div>
         </div>
         <!-- ============================================================== -->
