@@ -123,11 +123,13 @@ var qSix;
 // declaring the Object Constructor function, createQuestionAnswerObj 
 // Could have made each Object, hopefully this approach will be useful in future applications
 function createQuestionAnswerObj(question, answer, wrongOne, wrongTwo, wrongThree) {
-    this.question = question;
-    this.answer = answer;
-    this.wrongOne = wrongOne;
-    this.wrongTwo = wrongTwo;
-    this.wrongThree = wrongThree;
+    return {
+    question = question;
+    answer = answer;
+    wrongOne = wrongOne;
+    wrongTwo = wrongTwo;
+    wrongThree = wrongThree;
+      }
 }
 
 // calling the Obj Constructor function
