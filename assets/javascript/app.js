@@ -1,22 +1,88 @@
-
+$(document).ready(function () {
 // =================== VARIABLES =================
 
 var correct = 0;
 var incorrect = 0;
 var unanswered = 0;
 
-var currentNumOfQs = correct + incorrect + unanswered;
-
 var currentQuestion = 0;
 
+// ================== QUESTIONS AND ANSWERS(BUTTONS) ====================
+// var triviaArrObj = [
+//     {
+//         question: "What color is associated with Team Valor?",
+//         choices: ["red", "blue", "green", "blue"],
+//         answer: "red"
+//     },
+//     {
+//         question: "Pokemon Go generated $__ million in revenue its first month",
+//         choices: ["200", "50", "150", "100"],
+//         answer: "200"
+//     },
+//     {
+//         question: "What name guarantees Eevee becoming Flareon?",
+//         choices: ["Pyro", "Rainer", "Spicy", "Sparky"],
+//         answer: "Pyro"
+//     },
+//     {
+//         question: "Who is the Yellow team's mascot?",
+//         choices: ["Zapdos", "Spark", "Pikachu", "Instinct"],
+//         answer: "Zapdos"
+//     }];
+
+// ================== CLEAR PAGE FUNCTION ================
+function clearPage() {
+    $("div").empty();
+}
+
+// ================== CORRECT/INCORRECT/UNANSWERED RESPONSE======
+function respondCorrect() {
+    var goodJob = $("<h3>").text("Correct: Way to go!");
+    var goodJobDisplayed = $(".section-titles").append(goodJob);
+    // return goodJobDisplayed;
+}
+
+function respondIncorrect() {
+    var badJob = $("<h3>").text("Wrong: You should play more Pokemon");
+    var badJobDisplayed = $(".section-titles").append(badJob);
+}
+
+function respondUnanswered() {
+    var noJob = $("<h3>").text("Hope you were playing Pokemon Go and forgot to answer");
+    var noJobDisplayed = $(".section-titles").append(noJob);
+}
+
+// ================== FINAL RESULTS =====================
+function displayFinalResultsPage() {
+    var resultsTitle = $("<h3>").text("Let's see how you did:");
+    $(".section-titles").append("resultsTitle");
+
+    var correctResultsText = $("<p>").text("Correct: " + correct);
+    var correctDisplay = correctResultsText.insertAfter(resultsTitle);
 
 
+
+    console.log(correctResultsText);
+
+
+
+
+    // ($("<p>").text("Correct: " + correct)).insertAfter(restultsTitle);
+}
+    var correct = 0;
+    var incorrect = 0;
+    var unanswered = 0;
+
+
+
+// ================== FUNCTION FOR QUESTION & BUTTONS DOM =========
 function displayThisQuizPage() {
-
+console.log("displayThisQuizPage function");
     // =================== DOM: QUESTION  ====================
-    var sectionTitle = $("<h2>").text(triviaArrObj[currentQuestion].question);
-    var sectionTitleDisplayed = $(".section=titles").append(sectionTitle);
+    var sectionTitle = $("<h3>").text(triviaArrObj[currentQuestion].question);
+    var sectionTitleDisplayed = $(".section-titles").append(sectionTitle);
 
+    console.log(sectionTitle);
     // ================== DOM: ANSWER BUTTONS ===================
     var createdButton = $("<button>");
     for (let i = 0; i < triviaArrObj.length; i++) {
@@ -25,7 +91,7 @@ function displayThisQuizPage() {
         // ------which only goes up to 3 (4 choices)
         var x = 0;
 
-        createdButton.attr({ "rightAnswer": triviaArrObj[i].answer, "value": triviaArrObj[i].choices[x], "class": madeButtons });
+        createdButton.attr({ "rightAnswer": triviaArrObj[i].answer, "value": triviaArrObj[i].choices[x], "class": "madeButtons" });
         createdButton.text(triviaArrObj[currentQuestion].choices[x]);
         $(".created-button").append(createdButton);
 
@@ -37,117 +103,95 @@ function displayThisQuizPage() {
         if (currentQuestion < triviaArrObj.length - 1) {
             currentQuestion++;
         }
-        else {
-            // calling a function that displays the results
-
-        };
-
-        // ================== QUESTIONS AND ANSWERS(BUTTONS) ====================
-        var triviaArrObj = [
-            {
-                question: "What color is associated with Team Valor?",
-                choices: ["red", "blue", "green", "blue"],
-                answer: "red"
-            },
-            {
-                question: "Pokemon Go generated $__ million in revenue its first month",
-                choices: ["200", "50", "150", "100"],
-                answer: "200"
-            },
-            {
-                question: "What name guarantees Eevee becoming Flareon?",
-                choices: ["Pyro", "Rainer", "Spicy", "Sparky"],
-                answer: "Pyro"
-            },
-            {
-                question: "Who is the Yellow team's mascot?",
-                choices: ["Zapdos", "Spark", "Pikachu", "Instinct"],
-                answer: "Zapdos"
-            }];
-
-
-
-
     }
-    $("#bttn1").attr("value", triviaArrObj[currentQuestion].choices[0]);
-    $("#bttn2").attr("value", triviaArrObj[currentQuestion].choices[1]);
-    $("#bttn3").attr("value", triviaArrObj[currentQuestion].choices[2]);
-    $("#bttn4").attr("value", triviaArrObj[currentQuestion].choices[3]);
-    $("#bttn1").attr("rightAnswer", triviaArrObj[currentQuestion].answer);
-    $("#bttn2").attr("rightAnswer", triviaArrObj[currentQuestion].answer);
-    $("#bttn3").attr("rightAnswer", triviaArrObj[currentQuestion].answer);
-    $("#bttn4").attr("rightAnswer", triviaArrObj[currentQuestion].answer);
-    $("#bttn1").html(triviaArrObj[currentQuestion].choices[0]);
-    $("#bttn2").html(triviaArrObj[currentQuestion].choices[1]);
-    $("#bttn3").html(triviaArrObj[currentQuestion].choices[2]);
-    $("#bttn4").html(triviaArrObj[currentQuestion].choices[3]);
-    if (currentQuestion < triviaArrObj.length = 1) {
-        currentQuestion++;
+};
+// else if{
+// calling a function that displays the results
+//         };
+//     }
+// }
+// ================== QUESTIONS AND ANSWERS(BUTTONS) ====================
+var triviaArrObj = [
+    {
+        question: "What color is associated with Team Valor?",
+        choices: ["red", "blue", "green", "blue"],
+        answer: "red"
+    },
+    {
+        question: "Pokemon Go generated $__ million in revenue its first month",
+        choices: ["200", "50", "150", "100"],
+        answer: "200"
+    },
+    {
+        question: "What name guarantees Eevee becoming Flareon?",
+        choices: ["Pyro", "Rainer", "Spicy", "Sparky"],
+        answer: "Pyro"
+    },
+    {
+        question: "Who is the Yellow team's mascot?",
+        choices: ["Zapdos", "Spark", "Pikachu", "Instinct"],
+        answer: "Zapdos"
+    }];
+// ================== user clicks an answer > correct or incorrect
+$(".madeButtons").on("click", function (event) {
+    event.preventDefault();
+    var userChoice = $(this).attr("value");
+    var rightAnswer = $(this).attr("rightAnswer");
+    if (userChoice === rightAnswer) {
+        correct++;
     }
-else {
-        // calling a function that displays the results
+    else {
+        incorrect++;
     }
-
-    // ================== user clicks an answer > correct or incorrect
-    $(".created-button").on("click", function (event) {
-        event.preventDefault();
-        var userChoice = $(this).attr("value");
-        var rightAnswer = $(this).attr("rightAnswer");
-        if (userChoice === rightAnswer) {
-            correct++;
-        }
-        else {
-            incorrect++;
-        }
-
-        displayQuestions();
-    })
+    // displayThisQuizPage();
+});
 
 
 
-    // var correct = 0;
-    // var incorrect = 0;
-    // var unanswered = 0;
-    // //==== max number is 6, use this for LOGIC when <button>s are clicked
-    // var currentNumOfQs = correct + incorrect + unanswered;
+// ================== INTERVAL TIMER ================
 
-    // var currentQuestion = 0;
-    //===== tracks the number of =  <button> clicks (any)
-    // var clickCounter = 0;
+// ========== START & PLAY AGAIN BUTTON =========
+$("#start").on("click", function (event) {
+    startTimer();
+    event.preventDefault();
+    console.log("message something");
+    $("#start").hide();
+    displayThisQuizPage();
+});
+var seconds = 30;
+var thirtySecTimer;
 
-    // ================== INTERVAL TIMER ================
-    var seconds = 30;
-    var thirtySecTimer;
+// ---------timer function---------------
 
-    function startTimer() {
-        clearInterval(thirtySecTimer);
-        thirtySecTimer = setInterval(decrement, 1000 * 30);
-        $("#intervalTimer").append("Time Left: " + seconds);
-    }
+function startTimer() {
+
+    clearInterval(thirtySecTimer);
+    thirtySecTimer = setInterval(decrement, 1000 * 30);
 
     function decrement() {
-        seconds ==;
-        // $("#intervalTimer").html("Time remaining: " + seconds + "!");
+        seconds--;
+        // $("#interval-timer").html("Time remaining: " + seconds + "!");
         if (seconds <= 0) {
             unanswered++;
         }
     }
-    // ========== START & PLAY AGAIN BUTTON =========
-    $("#start").on("click", function (event) {
-        // startTimer();
-        event.preventDefault();
-        console.log("message something");
-        $("#start").hide();
-        $(".bttn").show();
-        displayQuestions();
-    })
+}
 
 
-// // replaceWith()
-// // $("start")
+});
 
-
-// // $(document).ready(function() 
+    // $("#bttn1").attr("value", triviaArrObj[currentQuestion].choices[0]);
+    // $("#bttn2").attr("value", triviaArrObj[currentQuestion].choices[1]);
+    // $("#bttn3").attr("value", triviaArrObj[currentQuestion].choices[2]);
+    // $("#bttn4").attr("value", triviaArrObj[currentQuestion].choices[3]);
+    // $("#bttn1").attr("rightAnswer", triviaArrObj[currentQuestion].answer);
+    // $("#bttn2").attr("rightAnswer", triviaArrObj[currentQuestion].answer);
+    // $("#bttn3").attr("rightAnswer", triviaArrObj[currentQuestion].answer);
+    // $("#bttn4").attr("rightAnswer", triviaArrObj[currentQuestion].answer);
+    // $("#bttn1").html(triviaArrObj[currentQuestion].choices[0]);
+    // $("#bttn2").html(triviaArrObj[currentQuestion].choices[1]);
+    // $("#bttn3").html(triviaArrObj[currentQuestion].choices[2]);
+    // $("#bttn4").html(triviaArrObj[currentQuestion].choices[3]);
 
 
 // // //  === after 30 seconds it moves to next q & increases unanswered count
@@ -162,14 +206,11 @@ else {
 
 
 // // function unansweredThirtySec() {
-
 // //     // start q      or      summary q
 // //     if ((currentNumOfQs === 0) || (currentNumOfQs === 6)) {
 // //         clearTimeout(thirtySec);
-
 // //     }
 // // }
-
 
 // // =========================================================
 // // +++++++++++DOESN'T WORK / NOT FINISHED++++++++++++++++++++
@@ -215,14 +256,4 @@ else {
 // qThree = new createQuestionAnswerObj("What name guarantees Eevee becoming Flareon?", "Pyro", "Rainer", "Spicy", "Sparky");
 // qFour = new createQuestionAnswerObj("Who is the Yellow team's mascot?", "Zapdos", "Spark", "Pikachu", "Instinct");
 // qFive = new createQuestionAnswerObj("What berry makes it easier to catch a pokemon", "razz berry", "pinap berry", "lucky berry", "blueberry");
-// qSix = new createQuestionAnswerObj("What is the highest level a trainer can reach?", "40", "35", "75", "100");
-
-
-// console.log(qOne.question);
-
-
-
-
-// // ++++++++++++++++++++++++++++++++++++++++++++++++
-// // window.onload = function () {
-
+// qSix = new createQuestionAnswerObj("What is the highest level a trainer can reach?", "40", "35", "75", "100
