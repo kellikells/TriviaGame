@@ -21,53 +21,35 @@
 
 <body>
     <section id="theContent">
-    <header>
-        <h1>Pokemon Go!</h1>
-        <h2>Gotta Answer Em All</h2>
-    </header>
-    <div class="container-fluid">
-        <!-- ============================================================== -->
-        <!-- ------------------ TIMER <h4>----------------->
-        <!-- ============================================================== -->
-        <div class="row">
-            <div class="col" id="interval-timer">
-            </div>
+        <header>
+            <h1>Pokemon Go!</h1>
+            <h2>Gotta Answer Em All</h2>
+        </header>
+
+   
+        <div class="interval-timer">
+       <!-------------- TIMER  ---------------------->
+        </div>
+ 
+        <div class="col section-titles">       
+        <!----------- (2: "Question")  -------------------->
+        <!----------- (3a: "Correct")(3b:"Incorrect")(3c:"out of time;Too Slow") -->
+        <!----------- (4: "Results Page")  ---------------->
         </div>
 
-        <!-- ============================================================== -->
-            <!-- (2: "Question") 
-            (3a: "Correct")(3b:"Incorrect")(3c:"out of time;Too Slow")
-            (4: "Your Trainer Summary")  -->
-        <!-- ============================================================== -->
-        <div class="row">
-            <div class="col section-titles">
-            </div>
+        <div class="col created-button">   
+        <!-- --------------BUTTONS   ---------------->
         </div>
 
-        <!-- ============================================================== -->
-        <!-- --------------------BUTTONS images  -->
-        <!-- ============================================================== -->
-        <div class="row">
-            <div class="col created-button">
-            </div>
+        <div class="col">
+            <button type="button" id="start"> Click to Start! </button>
         </div>
 
-        <div class="row">
-            <div class="col">
-                <button type="button" id="start"> Click to Start! </button>
-            </div>
+        <div class="col" id="answerImgHidden answerImgShown">
+        <!-- --------------------IMAGES ------------------>
         </div>
 
-        <!-- ============================================================== -->
-        <!-- --------------------IMAGES -->
-        <!-- ============================================================== -->
-        <div class="row">
-            <div class="col" id="answerImgHidden answerImgShown">
-
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="assets/javascript/app.js"></script>
     <!-- <script type="text/javascript" src="assets/javascript/first-approach.js"></script> -->
