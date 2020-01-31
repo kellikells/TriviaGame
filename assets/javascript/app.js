@@ -28,6 +28,7 @@ $(document).ready(function () {
     var incorrect = 0;
     var unanswered = 0;
     var currentQuestion = 0;
+    var i = 0;
 
     var questionsSoFar = (correct + incorrect + unanswered);
 
@@ -45,7 +46,7 @@ $(document).ready(function () {
         if (currentQuestion <= (triviaArrObj.length - 1)) {
             var sectionTitle = $("<h3>").text(triviaArrObj[currentQuestion].question);
             var sectionTitleDisplayed = $(".section-titles").append(sectionTitle);
-            displayFinalResultsPage();
+            displayButtons()
         }
         else {
             clearPage();
@@ -54,22 +55,51 @@ $(document).ready(function () {
     }
     // ================== FUNCTION FOR BUTTON - DOM =========
 
-    function displayButtons() {
-        var createdButton = $("<button>");
-        if (currentQuestion <= (triviaArrObj.length - 1)) {
+function displayButtons(){
+    for (i = 0; i < 4; i++) {
+        var rightAnswerText = function(){
+            return triviaArrObj[currentQuestion].answer
+        }
+        var valueText = function() {
+            return accessToChoices[i]
+        }
+        $(".created-button").append("<button/>", {
+            "text": valueText,
+            "value": valueText,
+            "rightAnswer": rightAnswerText,
+            "class": madeButtons
+        });
+    }}
 
-            //====== assigns "rightAnswer", "value",  "class" attributes
-            createdButton.attr({ "rightAnswer": triviaArrObj[currentQuestion].answer, "value": accessToChoices[i], "class": "madeButtons" });
-            // placing it on DOM
-            // createdButton.insertAfter$(".created-button");
-            $(".created-button").append(createdButton);
-            console.log(triviaArrObj[currentQuestion].question);
-        }
-        else {
-            clearPage();
-            displayFinalResultsPage();
-        }
-    }
+
+    //     createdButtonOne.attr({ "rightAnswer": triviaArrObj[currentQuestion].answer, "value": accessToChoices[1], "class": "madeButtons" });
+    //     $(".created-button").append(createdButtonOne);
+
+
+    // function displayButtons() {
+    //     var createdButtonZero = $("<button>");
+    //     var createdButtonOne = $("<button>");
+    //     var createdButtonTwo = $("<button>");
+    //     var createdButtonThree = $("<button>");
+
+    //     //====== assigns "rightAnswer", "value",  "class" attributes
+    //     createdButtonZero.attr({ "rightAnswer": triviaArrObj[currentQuestion].answer, "value": accessToChoices[0], "class": "madeButtons" });
+    //     // placing it on DOM
+    //     // createdButton.insertAfter$(".created-button");
+    //     $(".created-button").append(createdButtonZero);
+
+    //     createdButtonOne.attr({ "rightAnswer": triviaArrObj[currentQuestion].answer, "value": accessToChoices[1], "class": "madeButtons" });
+    //     $(".created-button").append(createdButtonOne);
+
+    //     createdButtonTwo.attr({ "rightAnswer": triviaArrObj[currentQuestion].answer, "value": accessToChoices[2], "class": "madeButtons" });
+    //     $(".created-button").append(createdButtonTwo);
+
+    //     createdButtonThree.attr({ "rightAnswer": triviaArrObj[currentQuestion].answer, "value": accessToChoices[3], "class": "madeButtons" });
+    //     $(".created-button").append(createdButtonThree);
+
+    // }
+
+
 
 
 
@@ -92,15 +122,10 @@ $(document).ready(function () {
     //     $(".created-button").append(createdButton);
     // }
 
-
-
-
     // ================== CORRECT/INCORRECT/UNANSWERED RESPONSE======
     function respondCorrect() {
         var goodJob = $("<h3>").text("Correct: Way to go!");
         var goodJobDisplayed = $(".section-titles").append(goodJob);
-
-        // return goodJobDisplayed;
     }
 
     function respondIncorrect() {
@@ -122,7 +147,6 @@ $(document).ready(function () {
         var correctResultsText = $("<p>").text("Correct: " + correct);
         correctResultsText.insertAfter(resultsTitle);
 
-
         // DOM : incorrect
         var incorrectResultsText = $("<p>").text("Fail: " + incorrect);
         incorrectResultsText.insertAfter(correctResultsText);
@@ -130,12 +154,11 @@ $(document).ready(function () {
         // DOM : unanswered
         var unasweredResultsText = $("<p>").text("AFK: " + unanswered);
         unansweredResultsText.insertAfter(incorrectResultsText);
-        
+
         //button to start again
         var playButton = $("<button>");
+        playButton.attr("onclick", "displayQuestion()")
 
-        onclick = displayButtons displayQuestion
-        
         // resetting the counters and question index
         var correct = 0;
         var incorrect = 0;
@@ -149,7 +172,6 @@ $(document).ready(function () {
         event.preventDefault();
         var userChoice = $(this).attr("value");
         var rightAnswer = $(this).attr("rightAnswer");
-
 
         // user is correct 
         // correct count increased
@@ -170,8 +192,6 @@ $(document).ready(function () {
     // ================== INTERVAL TIMER ================
     var seconds = 30;
     var intervalTimer;
-
-
 
     function startTimer() {
         clearInterval(intervalTimer);
@@ -199,21 +219,14 @@ $(document).ready(function () {
         clearInterval(intervalTimer);
     }
     // =========SHORT TIMER for results pages=====
-        // after 10 seconds, empty(), calls question & button functions, starts 30 second timer
+    // after 10 seconds, empty(), calls question & button functions, starts 30 second timer
     function shortTimer() {
-        clearPage();s
+        clearPage(); s
         displayQuestion();
-        displayButtons();
+        // displayButtons();
         startTimer();
         var timerID = setTimeout(shortTimer, 1000 * 10)
     }
-
-
-    // var timerForResults = setTimeout(function() {
-    //     clearPage();
-    //     displayQuestion();
-    //     displayButtons();
-    // }, 1000 * 10);
 
     // ========== START & PLAY AGAIN BUTTON =========
     $("#start").on("click", function (event) {
@@ -222,7 +235,7 @@ $(document).ready(function () {
         console.log("message something");
         $("#start").hide();
         displayQuestion();
-        displayButtons();
+        // displayButtons();
         $(".interval-timer").html("Time remaining: " + seconds + "!");
     });
 
