@@ -1,182 +1,234 @@
-$(document).ready(function () {
-    // =================== VARIABLES =================
-    
+
+
+// =================== VARIABLES =================
+var triviaArrObj = [
+    {
+        question: 'What color is associated with Team Valor?',
+        choices: ['red', 'blue', 'green', 'yellow'],
+        answer: 'red'
+    },
+    {
+        question: 'Pokemon Go generated $__ million in revenue its first month',
+        choices: ['200', '50', '150', '100'],
+        answer: '200'
+    },
+    {
+        question: 'What name guarantees Eevee becoming Flareon?',
+        choices: ['Pyro', 'Rainer', 'Spicy', 'Sparky'],
+        answer: 'Pyro'
+    },
+    {
+        question: 'Who is the Yellow team"s mascot?',
+        choices: ['Spark', 'Zapdos', 'Pikachu', 'Instinct'],
+        answer: 'Zapdos'
+    }];
+
+var correct = 0;
+var incorrect = 0;
+var unanswered = 0;
+var currentQuestion = 0;
+var i = 0;
+
+var questionsSoFar = (correct + incorrect + unanswered);
+
+var accessToChoices = triviaArrObj[currentQuestion].choices;
+
+// ======FUNCTION: EMPTY() BEFORE DISPLAYING ANOTHER 'PAGE'================
+function clearPage() {
+    $('div').empty();
+}
+// // ================== FUNCTION FOR BUTTON - DOM =========
+// function displayButtons() {
+//     for (i = 0; i < 4; i++) {
+//         var rightAnswerText = function () {
+//             return triviaArrObj[currentQuestion].answer
+//             console.log(rightAnswerText);
+//         }
+//         var valueText = function () {
+//             return accessToChoices[i]
+//         }
+//             'text': valueText,
+//             'value': valueText,
+//             'rightAnswer': rightAnswerText,
+//             'class': 'madeButtons'
+//         });
+//     }
+
+
+
+
+function displayButtons() {
+    var createdButtonZero = $('<button>');
+    var createdButtonOne = $('<button>');
+    var createdButtonTwo = $('<button>');
+    var createdButtonThree = $('<button>');
+
+    //====== assigns 'rightAnswer', 'value',  'class' attributes
+    createdButtonZero.attr({ 'rightAnswer': triviaArrObj[currentQuestion].answer, 'value': accessToChoices[0], 'class': 'madeButtons', 'text': accessToChoices[0]});
+    // placing it on DOM
+    // createdButton.insertAfter$('.created-button');
+    $('.created-button').append(createdButtonZero).html(createdButtonZero.text.accessToChoices[0])
+
+    createdButtonOne.attr({ 'rightAnswer': triviaArrObj[currentQuestion].answer, 'value': accessToChoices[1], 'class': 'madeButtons', 'text': accessToChoices[1] });
+    $('.created-button').append(createdButtonOne);
+
+    createdButtonTwo.attr({ 'rightAnswer': triviaArrObj[currentQuestion].answer, 'value': accessToChoices[2], 'class': 'madeButtons','text': accessToChoices[2] });
+    $('.created-button').append(createdButtonTwo);
+
+    createdButtonThree.attr({ 'rightAnswer': triviaArrObj[currentQuestion].answer, 'value': accessToChoices[3], 'class': 'madeButtons', 'text': accessToChoices[3] });
+    $('.created-button').append(createdButtonThree);
+
+}
+
+// ================== FUNCTION FOR QUESTION - DOM =========
+function displayQuestion() {
+
+    // if there are still questions then it puts the currentquestion[] 
+    if (currentQuestion <= (triviaArrObj.length - 1)) {
+        var sectionTitle = $('<h3>').text(triviaArrObj[currentQuestion].question);
+        var sectionTitleDisplayed = $('.section-titles').append(sectionTitle);
+        displayButtons()
+    }
+    else {
+        clearPage();
+        displayFinalResultsPage();
+    }
+}
+
+
+
+// ================THIS DIDN'T WORK BUT IDK WHY=========================
+// ======looping through answer choices and appending each as buttons
+
+// var createdButton = $('<button>');
+// ------i represents the index we take from [choices]
+// for (let i = 0; i < accessToChoices.length; i++) {
+//     var createdButton = $('<button>');
+
+//     // assigns 'rightAnswer' and 'value' and 'class' attributes
+//     createdButton.attr({ 'rightAnswer': triviaArrObj[currentQuestion].answer, 'value': accessToChoices[i], 'class': 'madeButtons' })
+
+//     // creates text of the button
+//     console.log(createdButton.text(accessToChoices[3]));
+
+//     // placing it on DOM
+//     // createdButton.insertAfter$('.created-button');
+//     $('.created-button').append(createdButton);
+// }
+
+// ================== CORRECT/INCORRECT/UNANSWERED RESPONSE======
+function respondCorrect() {
+    var goodJob = $('<h3>').text('Correct: Way to go!');
+    var goodJobDisplayed = $('.section-titles').append(goodJob);
+}
+
+function respondIncorrect() {
+    var badJob = $('<h3>').text('Wrong: You should play more Pokemon');
+    var badJobDisplayed = $('.section-titles').append(badJob);
+}
+
+function respondUnanswered() {
+    var noJob = $('<h3>').text('Hope you were playing Pokemon Go and forgot to answer');
+    var noJobDisplayed = $('.section-titles').append(noJob);
+}
+
+// ================== FINAL RESULTS =====================
+function displayFinalResultsPage() {
+    var resultsTitle = $('<h3>').text('Let"s see how you did:');
+    $('.section-titles').append(resultsTitle);
+
+    // DOM : correct
+    var correctResultsText = $('<p>').text('Correct: ' + correct);
+    correctResultsText.insertAfter(resultsTitle);
+
+    // DOM : incorrect
+    var incorrectResultsText = $('<p>').text('Fail: ' + incorrect);
+    incorrectResultsText.insertAfter(correctResultsText);
+
+    // DOM : unanswered
+    var unasweredResultsText = $('<p>').text('AFK: ' + unanswered);
+    unansweredResultsText.insertAfter(incorrectResultsText);
+
+    //button to start again
+    var playButton = $('<button>');
+    playButton.attr('onclick', 'displayQuestion()')
+
+    // resetting the counters and question index
     var correct = 0;
     var incorrect = 0;
     var unanswered = 0;
-    
     var currentQuestion = 0;
-    
-    // ================== QUESTIONS AND ANSWERS(BUTTONS) ====================
-    // var triviaArrObj = [
-    //     {
-    //         question: "What color is associated with Team Valor?",
-    //         choices: ["red", "blue", "green", "blue"],
-    //         answer: "red"
-    //     },
-    //     {
-    //         question: "Pokemon Go generated $__ million in revenue its first month",
-    //         choices: ["200", "50", "150", "100"],
-    //         answer: "200"
-    //     },
-    //     {
-    //         question: "What name guarantees Eevee becoming Flareon?",
-    //         choices: ["Pyro", "Rainer", "Spicy", "Sparky"],
-    //         answer: "Pyro"
-    //     },
-    //     {
-    //         question: "Who is the Yellow team's mascot?",
-    //         choices: ["Zapdos", "Spark", "Pikachu", "Instinct"],
-    //         answer: "Zapdos"
-    //     }];
-    
-    // ================== CLEAR PAGE FUNCTION ================
-    function clearPage() {
-        $("div").empty();
+}
+
+// ======== user clicks an answer > correct or incorrect
+$('.madeButtons').on('click', function (event) {
+    stopTimer();
+    event.preventDefault();
+    var userChoice = $(this).attr('value');
+    var rightAnswer = $(this).attr('rightAnswer');
+
+    // user is correct 
+    // correct count increased
+    // page is cleared, timer for results page initiated, elements called for response page
+    if (userChoice === rightAnswer) {
+        correct++;
+        clearPage();
+        shortTimer();
+        respondCorrect();
+    } else {
+        incorrect++;
+        clearPage();
+        shortTimer();
+        respondIncorrect();
     }
-    
-    // ================== CORRECT/INCORRECT/UNANSWERED RESPONSE======
-    function respondCorrect() {
-        var goodJob = $("<h3>").text("Correct: Way to go!");
-        var goodJobDisplayed = $(".section-titles").append(goodJob);
-        // return goodJobDisplayed;
+});
+
+// ================== INTERVAL TIMER ================
+var seconds = 30;
+var intervalTimer;
+
+function startTimer() {
+    clearInterval(intervalTimer);
+    intervalTimer = setInterval(decrement, 1000 * 30);
+}
+
+function decrement() {
+    seconds--;
+
+    // --------placing timer to the DOM 
+    // var timerText = $('<h4> Time Remaining: </h4>');
+    // $('.interval-timer').append(timerText);
+    $('.interval-timer').html('<h4> Time Remaining: ' + seconds + '</h4>');
+
+    if (seconds === 0) {
+        unanswered++;
+        stopTimer();
+        clearPage();
+        shortTimer();
+        respondUnanswered();
     }
-    
-    function respondIncorrect() {
-        var badJob = $("<h3>").text("Wrong: You should play more Pokemon");
-        var badJobDisplayed = $(".section-titles").append(badJob);
-    }
-    
-    function respondUnanswered() {
-        var noJob = $("<h3>").text("Hope you were playing Pokemon Go and forgot to answer");
-        var noJobDisplayed = $(".section-titles").append(noJob);
-    }
-    
-    // ================== FINAL RESULTS =====================
-    function displayFinalResultsPage() {
-        var resultsTitle = $("<h3>").text("Let's see how you did:");
-        $(".section-titles").append("resultsTitle");
-    
-        var correctResultsText = $("<p>").text("Correct: " + correct);
-        var correctDisplay = correctResultsText.insertAfter(resultsTitle);
-    
-    
-    
-        console.log(correctResultsText);
-    
-    
-    
-    
-        // ($("<p>").text("Correct: " + correct)).insertAfter(restultsTitle);
-    }
-        var correct = 0;
-        var incorrect = 0;
-        var unanswered = 0;
-    
-    
-    
-    // ================== FUNCTION FOR QUESTION & BUTTONS DOM =========
-    function displayThisQuizPage() {
-    console.log("displayThisQuizPage function");
-        // =================== DOM: QUESTION  ====================
-        var sectionTitle = $("<h3>").text(triviaArrObj[currentQuestion].question);
-        var sectionTitleDisplayed = $(".section-titles").append(sectionTitle);
-    
-        console.log(sectionTitle);
-        // ================== DOM: ANSWER BUTTONS ===================
-        var createdButton = $("<button>");
-        for (let i = 0; i < triviaArrObj.length; i++) {
-    
-            // ------x represents the index we take from [choices], 
-            // ------which only goes up to 3 (4 choices)
-            var x = 0;
-    
-            createdButton.attr({ "rightAnswer": triviaArrObj[i].answer, "value": triviaArrObj[i].choices[x], "class": "madeButtons" });
-            createdButton.text(triviaArrObj[currentQuestion].choices[x]);
-            $(".created-button").append(createdButton);
-    
-            // ------increment choices[x] for next button & set conditionals
-            x++;
-            if (x === 4) {
-                let x = 0;
-            }
-            if (currentQuestion < triviaArrObj.length - 1) {
-                currentQuestion++;
-            }
-        }
-    };
-    // else if{
-    // calling a function that displays the results
-    //         };
-    //     }
-    // }
-    // ================== QUESTIONS AND ANSWERS(BUTTONS) ====================
-    var triviaArrObj = [
-        {
-            question: "What color is associated with Team Valor?",
-            choices: ["red", "blue", "green", "blue"],
-            answer: "red"
-        },
-        {
-            question: "Pokemon Go generated $__ million in revenue its first month",
-            choices: ["200", "50", "150", "100"],
-            answer: "200"
-        },
-        {
-            question: "What name guarantees Eevee becoming Flareon?",
-            choices: ["Pyro", "Rainer", "Spicy", "Sparky"],
-            answer: "Pyro"
-        },
-        {
-            question: "Who is the Yellow team's mascot?",
-            choices: ["Zapdos", "Spark", "Pikachu", "Instinct"],
-            answer: "Zapdos"
-        }];
-    // ================== user clicks an answer > correct or incorrect
-    $(".madeButtons").on("click", function (event) {
-        event.preventDefault();
-        var userChoice = $(this).attr("value");
-        var rightAnswer = $(this).attr("rightAnswer");
-        if (userChoice === rightAnswer) {
-            correct++;
-        }
-        else {
-            incorrect++;
-        }
-        // displayThisQuizPage();
-    });
-    
-    
-    
-    // ================== INTERVAL TIMER ================
-    
-    // ========== START & PLAY AGAIN BUTTON =========
-    $("#start").on("click", function (event) {
-        startTimer();
-        event.preventDefault();
-        console.log("message something");
-        $("#start").hide();
-        displayThisQuizPage();
-    });
-    var seconds = 30;
-    var thirtySecTimer;
-    
-    // ---------timer function---------------
-    
-    function startTimer() {
-    
-        clearInterval(thirtySecTimer);
-        thirtySecTimer = setInterval(decrement, 1000 * 30);
-    
-        function decrement() {
-            seconds--;
-            // $("#interval-timer").html("Time remaining: " + seconds + "!");
-            if (seconds <= 0) {
-                unanswered++;
-            }
-        }
-    }
-    
-    
-    });
-    
+}
+
+function stopTimer() {
+    clearInterval(intervalTimer);
+}
+// =========SHORT TIMER for results pages=====
+// after 10 seconds, empty(), calls question & button functions, starts 30 second timer
+function shortTimer() {
+    clearPage(); s
+    displayQuestion();
+    // displayButtons();
+    startTimer();
+    var timerID = setTimeout(shortTimer, 1000 * 10)
+}
+
+// ========== START & PLAY AGAIN BUTTON =========
+$('#start').on('click', function (event) {
+    startTimer();
+    event.preventDefault();
+    console.log('message something');
+    $('#start').hide();
+    displayQuestion();
+    // displayButtons();
+    $('.interval-timer').html('Time remaining: ' + seconds + '!');
+})
