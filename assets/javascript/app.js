@@ -36,69 +36,44 @@ var accessToChoices = triviaArrObj[currentQuestion].choices;
 function clearPage() {
     $('div').empty();
 }
-// =============FUNCTION: BUTTONS DISPLAY ========================
-// ==========================================================================
-function displayButtons() {
-    var createdButtonZero = $('<button>');
-    var createdButtonOne = $('<button>');
-    var createdButtonTwo = $('<button>');
-    var createdButtonThree = $('<button>');
 
-    //====== assigns 'rightAnswer', 'value',  'class' attributes
-    createdButtonZero.attr({ 'rightAnswer': triviaArrObj[currentQuestion].answer, 'value': accessToChoices[0], 'class': 'madeButtons', 'text': accessToChoices[0]});
-    // placing it on DOM
-    // createdButton.insertAfter$('.created-button');
-    $('.created-button').append(createdButtonZero).html(createdButtonZero.text.accessToChoices[0])
-
-    createdButtonOne.attr({ 'rightAnswer': triviaArrObj[currentQuestion].answer, 'value': accessToChoices[1], 'class': 'madeButtons', 'text': accessToChoices[1] });
-    $('.created-button').append(createdButtonOne);
-
-    createdButtonTwo.attr({ 'rightAnswer': triviaArrObj[currentQuestion].answer, 'value': accessToChoices[2], 'class': 'madeButtons','text': accessToChoices[2] });
-    $('.created-button').append(createdButtonTwo);
-
-    createdButtonThree.attr({ 'rightAnswer': triviaArrObj[currentQuestion].answer, 'value': accessToChoices[3], 'class': 'madeButtons', 'text': accessToChoices[3] });
-    $('.created-button').append(createdButtonThree);
-
-}
-
-// ================== FUNCTION FOR QUESTION - DOM =========
+// ================== FUNCTION FOR QUESTION & BUtTOnS =========
 // ==========================================================================
 function displayQuestion() {
+    startTimer();
 
+    var createdButton = $('<button>');
     // if there are still questions then it puts the currentquestion[] 
     if (currentQuestion <= (triviaArrObj.length - 1)) {
         var sectionTitle = $('<h3>').text(triviaArrObj[currentQuestion].question);
         var sectionTitleDisplayed = $('.section-titles').append(sectionTitle);
-        displayButtons()
+        // displayButtons()
+
+        // ======looping through answer choices and appending each as buttons
+        // ==========================================================================
+        // ------i represents the index we take from [choices]
+        for (let i = 0; i < accessToChoices.length; i++) {
+            var createdButton = $('<button>' + accessToChoices[i] + '</button>');
+            // <button rightAnswer="correct answer" class="madeButtons" text="some text here"> put text here for user to see </button>
+
+            // assigns 'rightAnswer' and 'value' and 'class' attributes
+            createdButton.attr({ 'rightAnswer': triviaArrObj[currentQuestion].answer, 'value': accessToChoices[i], 'class': 'madeButtons', 'text': accessToChoices[i] });
+
+            // this works too
+            // createdButton.text("put text here for user to see");
+
+            console.log(accessToChoices[1]);
+
+            // placing it on DOM
+            // createdButton.insertAfter$('.created-button');
+            $('.created-button').append(createdButton);
+        }
     }
     else {
         clearPage();
         displayFinalResultsPage();
     }
 }
-
-
-
-// ================THIS DIDN'T WORK BUT IDK WHY=========================
-// ======looping through answer choices and appending each as buttons
-// ==========================================================================
-
-var createdButton = $('<button>');
-// ------i represents the index we take from [choices]
-for (let i = 0; i < accessToChoices.length; i++) {
-    var createdButton = $('<button>');
-
-    // assigns 'rightAnswer' and 'value' and 'class' attributes
-    createdButton.attr({ 'rightAnswer': triviaArrObj[currentQuestion].answer, 'value': accessToChoices[i], 'class': 'madeButtons' })
-
-    // creates text of the button
-    console.log(createdButton.text(accessToChoices[i]));
-
-    // placing it on DOM
-    // createdButton.insertAfter$('.created-button');
-    $('.created-button').append(createdButton);
-}
-
 // ================== CORRECT/INCORRECT/UNANSWERED RESPONSE======
 // ==========================================================================
 function respondCorrect() {
@@ -147,12 +122,13 @@ function displayFinalResultsPage() {
 
 // ======== user clicks an answer > correct or incorrect
 // ==========================================================================
-$('.madeButtons').on('click', function (event) {
+$('.created-button').on('click', '.madeButtons', function (event) {
     stopTimer();
     event.preventDefault();
     var userChoice = $(this).attr('value');
     var rightAnswer = $(this).attr('rightAnswer');
 
+    console.log("this message shows if onclick for answer button function runs");
     // user is correct 
     // correct count increased
     // page is cleared, timer for results page initiated, elements called for response page
@@ -176,7 +152,7 @@ var intervalTimer;
 
 function startTimer() {
     clearInterval(intervalTimer);
-    intervalTimer = setInterval(decrement, 1000 * 30);
+    intervalTimer = setInterval(decrement, 1000);
 }
 
 function decrement() {
@@ -213,11 +189,10 @@ function shortTimer() {
 // ========== START & PLAY AGAIN BUTTON =========
 // ==========================================================================
 $('#start').on('click', function (event) {
-    startTimer();
     event.preventDefault();
     console.log('message something');
     $('#start').hide();
     displayQuestion();
     // displayButtons();
-    $('.interval-timer').html('Time remaining: ' + seconds + '!');
+    // $('.interval-timer').html('Time remaining: ' + seconds + '!');
 })

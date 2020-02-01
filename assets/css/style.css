@@ -20,11 +20,13 @@ body {
     display: flexbox;
 }
 
+/* pokemon go */
 h1 {
     font-family: 'Bangers', cursive;
     font-size: 8em;
 }
 
+/* gotta answer em all */
 h2 {
     font-family: 'Sigmar One', cursive;
     font-size: 3em;
@@ -32,10 +34,18 @@ h2 {
     padding: 15px 0;
 }
 
+/* section titles */
 h3 {
     font-family: 'Sigmar One', cursive;
     font-size: 3em;
     padding: 10px 0;
+}
+
+/* timer */
+h4 {
+    font-size: 1.5em;
+    padding: 10px;
+    margin: 5px 0;
 }
 
 p.question {
@@ -65,7 +75,11 @@ button:hover {
   }
   
 .madeButtons {
-    color: yellow;
-    background-color: red;
+    background-color: yellow;
+    color: red;
+    border: 2px solid #e24b45;
     fill-opacity: 0.5;
+    padding: 5px 10px;
+    font-size: 1.5em;
+    font-family: 'Patrick Hand', cursive;
 }
