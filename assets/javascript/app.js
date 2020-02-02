@@ -36,8 +36,48 @@ var accessToChoices = triviaArrObj[currentQuestion].choices;
 function clearPage() {
     $('div').empty();
 }
+// ================== INTERVAL TIMER ================
+// ==========================================================================
+var seconds = 30;
+var intervalTimer;
 
-// ================== FUNCTION FOR QUESTION & BUtTOnS =========
+function startTimer() {
+    clearInterval(intervalTimer);
+    intervalTimer = setInterval(decrement, 1000);
+}
+
+function decrement() {
+    seconds--;
+
+    // --------placing timer to the DOM 
+    // var timerText = $('<h4> Time Remaining: </h4>');
+    // $('.interval-timer').append(timerText);
+    $('.interval-timer').html('<h4> Time Remaining: ' + seconds + '</h4>');
+
+    if (seconds === 0) {
+        unanswered++;
+        stopTimer();
+        clearPage();
+        shortTimer();
+        respondUnanswered();
+    }
+}
+
+function stopTimer() {
+    clearInterval(intervalTimer);
+}
+// =========SHORT TIMER for results pages=====
+// ==========================================================================
+// after 10 seconds, empty(), calls question & button functions, starts 30 second timer
+function shortTimer() {
+    // clearPage(); 
+    displayQuestion();
+    // displayButtons();
+    startTimer();
+    var timerID = setTimeout(shortTimer, 1000 * 10)
+}
+
+// ================== FUNCTION FOR QUESTION & BUtTOnS ========
 // ==========================================================================
 function displayQuestion() {
     startTimer();
@@ -53,11 +93,11 @@ function displayQuestion() {
         // ==========================================================================
         // ------i represents the index we take from [choices]
         for (let i = 0; i < accessToChoices.length; i++) {
-            var createdButton = $('<button>' + accessToChoices[i] + '</button>');
+            var createdButton = $('<button>' + triviaArrObj[currentQuestion].choices[i] + '</button>');
             // <button rightAnswer="correct answer" class="madeButtons" text="some text here"> put text here for user to see </button>
 
             // assigns 'rightAnswer' and 'value' and 'class' attributes
-            createdButton.attr({ 'rightAnswer': triviaArrObj[currentQuestion].answer, 'value': accessToChoices[i], 'class': 'madeButtons', 'text': accessToChoices[i] });
+            createdButton.attr({ 'data-value-right-answer': triviaArrObj[currentQuestion].answer, 'value': triviaArrObj[currentQuestion].choices[i], 'class': 'madeButtons', 'text': triviaArrObj[currentQuestion].choices[i] });
 
             // this works too
             // createdButton.text("put text here for user to see");
@@ -126,65 +166,30 @@ $('.created-button').on('click', '.madeButtons', function (event) {
     stopTimer();
     event.preventDefault();
     var userChoice = $(this).attr('value');
-    var rightAnswer = $(this).attr('rightAnswer');
+    var rightAnswer = $(this).attr('data-value-right-answer');
+    console.log(userChoice, rightAnswer);
 
     console.log("this message shows if onclick for answer button function runs");
     // user is correct 
     // correct count increased
     // page is cleared, timer for results page initiated, elements called for response page
+    currentQuestion++;
     if (userChoice === rightAnswer) {
+        console.log("if condition works");
         correct++;
         clearPage();
         shortTimer();
-        respondCorrect();
+        // respondCorrect();
+        // currentQuestion++;
     } else {
+        console.log("else statement is working... incorrect")
         incorrect++;
         clearPage();
         shortTimer();
         respondIncorrect();
+        // currentQuestion++;
     }
 });
-
-// ================== INTERVAL TIMER ================
-// ==========================================================================
-var seconds = 30;
-var intervalTimer;
-
-function startTimer() {
-    clearInterval(intervalTimer);
-    intervalTimer = setInterval(decrement, 1000);
-}
-
-function decrement() {
-    seconds--;
-
-    // --------placing timer to the DOM 
-    // var timerText = $('<h4> Time Remaining: </h4>');
-    // $('.interval-timer').append(timerText);
-    $('.interval-timer').html('<h4> Time Remaining: ' + seconds + '</h4>');
-
-    if (seconds === 0) {
-        unanswered++;
-        stopTimer();
-        clearPage();
-        shortTimer();
-        respondUnanswered();
-    }
-}
-
-function stopTimer() {
-    clearInterval(intervalTimer);
-}
-// =========SHORT TIMER for results pages=====
-// ==========================================================================
-// after 10 seconds, empty(), calls question & button functions, starts 30 second timer
-function shortTimer() {
-    clearPage(); s
-    displayQuestion();
-    // displayButtons();
-    startTimer();
-    var timerID = setTimeout(shortTimer, 1000 * 10)
-}
 
 // ========== START & PLAY AGAIN BUTTON =========
 // ==========================================================================
