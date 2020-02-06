@@ -1,4 +1,4 @@
-// =================== VARIABLES =================
+// ======= ARRAY VAR: QUESTIONS/CHOICES/ANSWERS =========
 var triviaArrObj = [
     {
         question: 'What color is associated with Team Valor?',
@@ -19,30 +19,37 @@ var triviaArrObj = [
         question: 'Who is the Yellow team"s mascot?',
         choices: ['Spark', 'Zapdos', 'Pikachu', 'Instinct'],
         answer: 'Zapdos'
+    },
+    {
+        question: 'What is the highest level for a trainer?',
+        choices: ['100', '30', '50', '40'],
+        answer: '40'
     }];
 
+
+//------------counters----------------
 var correct = 0;
 var incorrect = 0;
 var unanswered = 0;
 var currentQuestion = 0;
 var i = 0;
 
-var questionsSoFar = (correct + incorrect + unanswered);
-
 var accessToChoices = triviaArrObj[currentQuestion].choices;
 
-// ======FUNCTION: EMPTY() BEFORE DISPLAYING ANOTHER 'PAGE'================
-// ==========================================================================
+var questionsSoFar = (correct + incorrect + unanswered);
+
+// ====FUNCTION: EMPTY() BEFORE DISPLAYING ANOTHER 'PAGE'===
+// ====================================================
 function clearPage() {
     $('div').empty();
 }
-// ================== INTERVAL TIMER ================
-// ==========================================================================
+// ============== INTERVAL TIMER ================
+// ===============================================
 var seconds = 30;
 var intervalTimer;
 
 function startTimer() {
-    clearInterval(intervalTimer);
+    // clearInterval(intervalTimer);
     intervalTimer = setInterval(decrement, 1000);
 }
 
@@ -56,9 +63,9 @@ function decrement() {
 
     if (seconds === 0) {
         unanswered++;
-        stopTimer();
+        // stopTimer();
         clearPage();
-        shortTimer();
+        // shortTimer();
         respondUnanswered();
     }
 }
@@ -67,45 +74,45 @@ function stopTimer() {
     clearInterval(intervalTimer);
 }
 // =========SHORT TIMER for results pages=====
-// ==========================================================================
+//==============================================
 // after 10 seconds, empty(), calls question & button functions, starts 30 second timer
 function shortTimer() {
     // clearPage(); 
     displayQuestion();
     // displayButtons();
-    startTimer();
+    // startTimer();
     var timerID = setTimeout(shortTimer, 1000 * 10)
 }
 
-// ================== FUNCTION FOR QUESTION & BUtTOnS ========
-// ==========================================================================
+// ========= FUNCTION FOR QUESTION & BUTTONS ========
+// ========================================================
 function displayQuestion() {
-    startTimer();
+    // startTimer();
+    $('created-button').empty();
 
-    var createdButton = $('<button>');
     // if there are still questions then it puts the currentquestion[] 
     if (currentQuestion <= (triviaArrObj.length - 1)) {
+        clearInterval(intervalTimer);
+
+        //set time to 30 seconds & start timer
+        seconds = 30;
+        startTimer();
+
+        //showing the question
         var sectionTitle = $('<h3>').text(triviaArrObj[currentQuestion].question);
         var sectionTitleDisplayed = $('.section-titles').append(sectionTitle);
-        // displayButtons()
 
-        // ======looping through answer choices and appending each as buttons
-        // ==========================================================================
-        // ------i represents the index we take from [choices]
+        // looping through answer choices and appending each as buttons
+
         for (let i = 0; i < accessToChoices.length; i++) {
             var createdButton = $('<button>' + triviaArrObj[currentQuestion].choices[i] + '</button>');
-            // <button rightAnswer="correct answer" class="madeButtons" text="some text here"> put text here for user to see </button>
 
             // assigns 'rightAnswer' and 'value' and 'class' attributes
             createdButton.attr({ 'data-value-right-answer': triviaArrObj[currentQuestion].answer, 'value': triviaArrObj[currentQuestion].choices[i], 'class': 'madeButtons', 'text': triviaArrObj[currentQuestion].choices[i] });
 
-            // this works too
-            // createdButton.text("put text here for user to see");
-
             console.log(accessToChoices[1]);
 
-            // placing it on DOM
-            // createdButton.insertAfter$('.created-button');
+            // placing it on DOM;
             $('.created-button').append(createdButton);
         }
     }
@@ -114,26 +121,32 @@ function displayQuestion() {
         displayFinalResultsPage();
     }
 }
-// ================== CORRECT/INCORRECT/UNANSWERED RESPONSE======
-// ==========================================================================
+// ======= CORRECT/INCORRECT/UNANSWERED RESPONSE ===
+// =========================================================
 function respondCorrect() {
-    var goodJob = $('<h3>').text('Correct: Way to go!');
-    var goodJobDisplayed = $('.section-titles').append(goodJob);
+    var goodJob = $('<h3>').text('Correct!');
+    var goodJobDisplayed = $('.section-titles').html(goodJob);
+    displayQuestion();
 }
 
 function respondIncorrect() {
-    var badJob = $('<h3>').text('Wrong: You should play more Pokemon');
-    var badJobDisplayed = $('.section-titles').append(badJob);
+    var badJob = $('<h3>').text('Wrong');
+    var badJobDisplayed = $('.section-titles').html(badJob);
+
+    displayQuestion();
+    console.log(currentQuestion);
 }
 
 function respondUnanswered() {
-    var noJob = $('<h3>').text('Hope you were playing Pokemon Go and forgot to answer');
-    var noJobDisplayed = $('.section-titles').append(noJob);
+    var noJob = $('<h3>').text('Too Slow');
+    var noJobDisplayed = $('.section-titles').html(noJob);
+    displayQuestion();
 }
 
 // ================== FINAL RESULTS =====================
-// ==========================================================================
+// ======================================================
 function displayFinalResultsPage() {
+    console.log(correct, incorrect, unanswered);
     var resultsTitle = $('<h3>').text('Let"s see how you did:');
     $('.section-titles').append(resultsTitle);
 
@@ -146,7 +159,7 @@ function displayFinalResultsPage() {
     incorrectResultsText.insertAfter(correctResultsText);
 
     // DOM : unanswered
-    var unasweredResultsText = $('<p>').text('AFK: ' + unanswered);
+    var unansweredResultsText = $('<p>').text('What Happened?: ' + unanswered);
     unansweredResultsText.insertAfter(incorrectResultsText);
 
     //button to start again
@@ -154,16 +167,17 @@ function displayFinalResultsPage() {
     playButton.attr('onclick', 'displayQuestion()')
 
     // resetting the counters and question index
-    var correct = 0;
-    var incorrect = 0;
-    var unanswered = 0;
-    var currentQuestion = 0;
+    correct = 0;
+    incorrect = 0;
+    unanswered = 0;
+    currentQuestion = 0;
+
 }
 
 // ======== user clicks an answer > correct or incorrect
-// ==========================================================================
+// =================================================
 $('.created-button').on('click', '.madeButtons', function (event) {
-    stopTimer();
+    // stopTimer();
     event.preventDefault();
     var userChoice = $(this).attr('value');
     var rightAnswer = $(this).attr('data-value-right-answer');
@@ -178,21 +192,21 @@ $('.created-button').on('click', '.madeButtons', function (event) {
         console.log("if condition works");
         correct++;
         clearPage();
-        shortTimer();
-        // respondCorrect();
+        // shortTimer();
+        respondCorrect();
         // currentQuestion++;
     } else {
         console.log("else statement is working... incorrect")
         incorrect++;
         clearPage();
-        shortTimer();
+        // shortTimer();
         respondIncorrect();
         // currentQuestion++;
     }
 });
 
 // ========== START & PLAY AGAIN BUTTON =========
-// ==========================================================================
+// ========================================
 $('#start').on('click', function (event) {
     event.preventDefault();
     console.log('message something');

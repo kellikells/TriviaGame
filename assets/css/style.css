@@ -23,40 +23,45 @@ body {
 /* pokemon go */
 h1 {
     font-family: 'Bangers', cursive;
-    font-size: 8em;
+    font-size: 6em;
 }
 
 /* gotta answer em all */
 h2 {
     font-family: 'Sigmar One', cursive;
-    font-size: 3em;
+    font-size: 2em;
     border-bottom: 5px dotted #ffcb08;
     padding: 15px 0;
 }
 
 /* section titles */
 h3 {
-    font-family: 'Sigmar One', cursive;
-    font-size: 3em;
+    font-family: 'Patrick Hand', cursive;
+    font-size: 2em;
     padding: 10px 0;
 }
 
 /* timer */
 h4 {
+    font-family: 'Exo 2', sans-serif;    
     font-size: 1.5em;
     padding: 10px;
-    margin: 5px 0;
+    margin: 5px;
+    border: 4mm ridge darkslategray;
+    color: khaki;
+    background-color: black;
 }
 
 p.question {
-    font-family: 'Source Code Pro', monospace;
+    font-family: 'Patrick Hand', cursive;
+    font-size: 1.5vw;
 }
 
 p.reaction {
-    font-family: 'Gloria Hallelujah', cursive;
+    font-family: 'Rock Salt', cursive;
+    font-size: 2.5vw;
+
 }
-
-
 
 button {
     font-family: 'Patrick Hand', cursive;
