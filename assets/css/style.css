@@ -13,23 +13,32 @@ body {
     max-width: 960px;
     padding: 40px;
     margin: 10px auto;
-    background: #f9fcff;
-    border: 20px solid #e24b45;
+    background: #32f;
+    /* background: #f9fcff; */
+    border: 20px solid #b61c17;
     min-height: calc(100vh - 40px); 
     /* display: flex; */
     display: flexbox;
+    opacity: 95%;
+    outline: silver;
 }
 
 /* pokemon go */
 h1 {
     font-family: 'Bangers', cursive;
     font-size: 6em;
+
+    color: #f10;
+    text-shadow: 2px 2px 3px #fd1;
+
 }
 
 /* gotta answer em all */
 h2 {
     font-family: 'Sigmar One', cursive;
     font-size: 2em;
+    color: #fd1;
+    opacity: 75%;
     border-bottom: 5px dotted #ffcb08;
     padding: 15px 0;
 }
@@ -42,14 +51,20 @@ h3 {
 }
 
 /* timer */
+.wrap {
+    width: 30%;
+    margin: 0 auto;
+}
 h4 {
     font-family: 'Exo 2', sans-serif;    
     font-size: 1.5em;
     padding: 10px;
     margin: 5px;
-    border: 4mm ridge darkslategray;
     color: khaki;
-    background-color: black;
+    opacity: 70%;
+
+    /* color: darkslategray; */
+    
 }
 
 p.question {
@@ -63,22 +78,45 @@ p.reaction {
 
 }
 
+
+#start {
+    font-family: 'Patrick Hand', cursive;
+    padding: 5px 10px;
+    /* color:grey; */
+    background-color: silver;
+    border: 2px solid white;
+    font-size: 1.5em;
+    margin: 15px 5px;
+    border-radius: 12px;
+    opacity: 15;
+}
+
+#start:hover {
+    opacity: 0.75;
+    color: white;
+  }
+
+}
+/* 
 button {
     font-family: 'Patrick Hand', cursive;
     padding: 5px 10px;
     color:grey;
-    background-color: lightgrey;
-    border: 2px solid #008CBA;
+    background-color: silver;
+    border: 2px solid white;
     font-size: 1.5em;
     margin: 15px 5px;
+    border-radius: 12px;
+    opacity: 0.5;
+
 }
 
-/* button hover effects */
+button hover effects
 button:hover {
-    background-color: #008CBA;
+    opacity: 0.75;
     color: white;
-  }
-  
+  } */
+/*   
 .madeButtons {
     background-color: yellow;
     color: red;
@@ -87,4 +125,4 @@ button:hover {
     padding: 5px 10px;
     font-size: 1.5em;
     font-family: 'Patrick Hand', cursive;
-}
+} */
