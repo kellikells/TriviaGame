@@ -23,6 +23,11 @@ body {
     outline: silver;
 }
 
+header {
+    padding: 20px 0 30px 0;
+    opacity: 150%;
+}
+
 /* pokemon go */
 h1 {
     font-family: 'Bangers', cursive;
@@ -30,7 +35,6 @@ h1 {
 
     color: #f10;
     text-shadow: 2px 2px 3px #fd1;
-
 }
 
 /* gotta answer em all */
@@ -40,7 +44,7 @@ h2 {
     color: #fd1;
     opacity: 75%;
     border-bottom: 5px dotted #ffcb08;
-    padding: 15px 0;
+    padding: 15px 0 30px 0;
 }
 
 /* section titles */
@@ -48,36 +52,34 @@ h3 {
     font-family: 'Patrick Hand', cursive;
     font-size: 2em;
     padding: 10px 0;
+    color: white;
+}
+
+/* correct/ incorrect/ unanswered */
+h5 {
+        opacity: 0.5;
+        font-size: 2.5em;
+        color: silver;
+        width: 30%;
+        margin: 0 auto;
+        font-family: 'Patrick Hand', cursive;
 }
 
 /* timer */
 .wrap {
-    width: 30%;
+    width: 40%;
     margin: 0 auto;
 }
+/* timer */
 h4 {
     font-family: 'Exo 2', sans-serif;    
-    font-size: 1.5em;
+    font-size: 2.5em;
     padding: 10px;
     margin: 5px;
     color: khaki;
-    opacity: 70%;
-
+    opacity: 65%;
     /* color: darkslategray; */
-    
 }
-
-p.question {
-    font-family: 'Patrick Hand', cursive;
-    font-size: 1.5vw;
-}
-
-p.reaction {
-    font-family: 'Rock Salt', cursive;
-    font-size: 2.5vw;
-
-}
-
 
 #start {
     font-family: 'Patrick Hand', cursive;
@@ -85,8 +87,8 @@ p.reaction {
     /* color:grey; */
     background-color: silver;
     border: 2px solid white;
-    font-size: 1.5em;
-    margin: 15px 5px;
+    font-size: 2.5em;
+    margin: 125px 5px 15px 5px;
     border-radius: 12px;
     opacity: 15;
 }
@@ -94,28 +96,35 @@ p.reaction {
 #start:hover {
     opacity: 0.75;
     color: white;
+    border-color: yellow;
   }
 
-}
-/* 
 button {
-    font-family: 'Patrick Hand', cursive;
+    font-family: 'Concert One', cursive;
     padding: 5px 10px;
-    color:grey;
+    color:red;
     background-color: silver;
-    border: 2px solid white;
+    border: 4px solid yellow;
     font-size: 1.5em;
     margin: 15px 5px;
     border-radius: 12px;
-    opacity: 0.5;
+    /* opacity: 0.8; */
+}
+
+/* results */
+p {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 2.5vh;
+    padding: 10px 0;
+    color: white;
 
 }
 
-button hover effects
+/* button hover effects */
 button:hover {
     opacity: 0.75;
     color: white;
-  } */
+  } 
 /*   
 .madeButtons {
     background-color: yellow;
@@ -125,4 +134,5 @@ button:hover {
     padding: 5px 10px;
     font-size: 1.5em;
     font-family: 'Patrick Hand', cursive;
-} */
+} 
+

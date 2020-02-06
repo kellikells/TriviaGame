@@ -124,13 +124,13 @@ function displayQuestion() {
 // ======= CORRECT/INCORRECT/UNANSWERED RESPONSE ===
 // =========================================================
 function respondCorrect() {
-    var goodJob = $('<h3>').text('Correct!');
+    var goodJob = $('<h5>').text('Correct!');
     var goodJobDisplayed = $('.section-titles').html(goodJob);
     displayQuestion();
 }
 
 function respondIncorrect() {
-    var badJob = $('<h3>').text('Wrong');
+    var badJob = $('<h5>').text('Wrong');
     var badJobDisplayed = $('.section-titles').html(badJob);
 
     displayQuestion();
@@ -138,7 +138,7 @@ function respondIncorrect() {
 }
 
 function respondUnanswered() {
-    var noJob = $('<h3>').text('Too Slow');
+    var noJob = $('<h5>').text('Too Slow');
     var noJobDisplayed = $('.section-titles').html(noJob);
     displayQuestion();
 }
