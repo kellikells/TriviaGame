@@ -1,4 +1,4 @@
-// ======= ARRAY VAR: QUESTIONS/CHOICES/ANSWERS =========
+    // ======= ARRAY VAR: QUESTIONS/CHOICES/ANSWERS =========
 var triviaArrObj = [
     {
         question: 'What color is associated with Team Valor?',
@@ -73,16 +73,6 @@ function decrement() {
 function stopTimer() {
     clearInterval(intervalTimer);
 }
-// =========SHORT TIMER for results pages=====
-//==============================================
-// after 10 seconds, empty(), calls question & button functions, starts 30 second timer
-function shortTimer() {
-    // clearPage(); 
-    displayQuestion();
-    // displayButtons();
-    // startTimer();
-    var timerID = setTimeout(shortTimer, 1000 * 10)
-}
 
 // ========= FUNCTION FOR QUESTION & BUTTONS ========
 // ========================================================
@@ -121,17 +111,36 @@ function displayQuestion() {
         displayFinalResultsPage();
     }
 }
+
+// =========SHORT TIMER for results pages=====
+//==============================================
+// after 10 seconds, empty(), calls question & button functions, starts 30 second timer
+var timerID;
+function shortTimer() {
+    // clearPage(); 
+    displayQuestion();
+    // displayButtons();
+    // startTimer();
+     timerID = setTimeout(shortTimer, 1000 * 10)
+    clearTimer(timerID);
+}
+function stopShortTimer(){
+    clearTimeout(timerID);
+}
+
+
 // ======= CORRECT/INCORRECT/UNANSWERED RESPONSE ===
 // =========================================================
 function respondCorrect() {
     var goodJob = $('<h5>').text('Correct!');
-    var goodJobDisplayed = $('.section-titles').html(goodJob);
+    var goodJobDisplayed = $('.response').html(goodJob);
+    // shortTimer();
     displayQuestion();
 }
 
 function respondIncorrect() {
     var badJob = $('<h5>').text('Wrong');
-    var badJobDisplayed = $('.section-titles').html(badJob);
+    var badJobDisplayed = $('.response').html(badJob);
 
     displayQuestion();
     console.log(currentQuestion);
@@ -139,7 +148,7 @@ function respondIncorrect() {
 
 function respondUnanswered() {
     var noJob = $('<h5>').text('Too Slow');
-    var noJobDisplayed = $('.section-titles').html(noJob);
+    var noJobDisplayed = $('.response').html(noJob);
     displayQuestion();
 }
 
