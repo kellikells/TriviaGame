@@ -43,7 +43,7 @@ var questionsSoFar = (correct + incorrect + unanswered);
 function clearPage() {
     $('div').empty();
 }
-// ============== INTERVAL TIMER ================
+// ============== zINTERVAL TIMER ================
 // ===============================================
 var seconds = 30;
 var intervalTimer;
