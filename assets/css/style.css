@@ -71,9 +71,11 @@ h5 {
 }
 
 /* timer */
-.wrap {
+.interval-timer {
     width: 40%;
-    margin: 15px auto;
+    margin: 30px auto 0 auto;
+    background-color: rgb(54, 21, 105);
+    /* opacity: .75; */
 }
 /* timer */
 h4 {
